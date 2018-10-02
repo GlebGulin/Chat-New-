@@ -1,0 +1,81 @@
+﻿@model CHAT.Models.Chater
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="~/Content/upgrade.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/Pictures/convert.png" type="image/x-icon">
+    <title>Редактирование</title>
+</head>
+<body>
+    <div class="head">
+        <h1>Акаунт</h1>
+    </div>
+    <div id="clear"></div>
+    <div id="update">
+
+        <hr />
+        <table>
+            <tr>
+
+                <td><p>@Html.DisplayNameFor(model => model.ChaterkName)</p></td>
+
+
+
+                <td><p>@Html.DisplayFor(model => model.ChaterkName)</p></td>
+
+            </tr>
+
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.Pass)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Pass)
+                </dd>*@
+
+            <tr>
+                <td><p>@Html.DisplayNameFor(model => model.DateRegistered)</p></td>
+
+                <td><p>@Html.DisplayFor(model => model.DateRegistered)</p></td>
+            </tr>
+            <tr>
+                <td><p>@Html.DisplayNameFor(model => model.ImageLink)</p></td>
+
+                <td>
+                    @if (Model.ImageLink.Length > 0)
+                    {
+
+                        <img src="@Url.Content(Model.ImageLink)" alt="Нету фотографии" style="width:500px" />
+                    }
+                    else
+                    {
+                        <img src="@Url.Content("~/ProfilePhotos/UNDEFINED.png")" style="width:500px">
+                    }
+
+                    @using (Html.BeginForm("UpdateFhoto", "Enter", FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                    {
+                        <input type="file" name="Photo" class="UpdPht" />
+                        <input type="submit" value="Сохранить фотографию" class="submit_pht" />
+                    }
+
+                </td>
+
+
+        </table>
+
+    </div>
+    <div id="back">
+        @*@Html.ActionLink("Вернуться в чат", "MessagePost", "Chat")*@
+        <a href="/Chat/MessagePost">Вернуться в чат</a>
+    </div>
+</body>
+</html>

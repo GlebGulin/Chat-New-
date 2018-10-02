@@ -1,0 +1,106 @@
+﻿@font-face {
+    font-family: Cormorant;
+    src: url(CormorantInfant-Italic.ttf) format("truetype");
+}
+body {
+    margin:0;
+    padding:0;
+}
+/*Поле отображения сообщений*/
+.chatField {
+    margin: 10px auto;
+
+    height: 600px;
+    width: 900px;
+    border: 3px solid #eb8888;
+    border-radius: 20px;
+    overflow: auto;
+}
+/*Блок ввода сообщений*/
+.entermessage {
+    float:right;
+    width: 900px;
+    margin-left: 100px;
+
+}
+/*Текстовое поле ввода сообщений*/
+.MessagePost {
+    width: 600px;
+    height:80px;
+}
+
+.ans {
+    margin-left: 50px;
+}
+h2 {
+    text-align:center;
+}
+#head {
+    background-color: #e99132;
+    
+}
+
+.clear {
+    clear:both;
+}
+.menu {
+    width: 250px;
+    height: 750px;
+    float: left;
+    
+}
+.menu nav ul {
+    margin-left: 50px;
+    /*list-style: none;*/
+    list-style-image: url(YES.png);
+    
+}
+.menu nav ul li {
+    text-decoration: none;
+    text-decoration-color: aqua;
+}
+
+#name {
+    font-size: 150%;
+    color: red;
+}
+a {
+    text-decoration: none;
+    font-size: 200%;
+    font-family: Cormorant;
+}
+
+li {
+    padding-top: 30px;
+}
+body {
+    background-color: #e8e6e6;
+}
+h2 {
+    font-family: Cormorant;
+    font-size:200%;
+}
+#content {
+    font-family: Cormorant;
+    font-size: 150%;
+    color: #6d4848;
+    
+}
+#time {
+    font-size: 70%;
+}
+#anssur {
+    font-size: 150%;
+    color: #ff6a00;
+}
+#anscontent {
+    font-family: Cormorant;
+    font-size: 150%;
+    color: #8a1818;
+}
+#anstime {
+    font-size: 70%;
+}
+
+
+

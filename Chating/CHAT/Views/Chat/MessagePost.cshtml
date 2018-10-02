@@ -1,0 +1,125 @@
+﻿@model IEnumerable<CHAT.Models.Messager>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="~/Content/stylemessage.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/Pictures/convert.png" type="image/x-icon">
+    <title>Чат</title>
+</head>
+<body>
+   
+    <div class="clear"></div>
+    <div class="menu">
+        <h2>Опции</h2>
+        <nav>
+            <ul>
+                @*<li><p>@Html.ActionLink("Редактировать мой профиль", "EditProfile", "Enter") </p></li>
+
+                <li><p>@Html.ActionLink("Выйти из чата", "LogOUT", "Chat")</p></li>*@
+                <li><a href="/Enter/EditProfile">Изменить <br/>аватар</a></li>
+                <li><a href="/Chat/LogOUT">Выйти <br/>из чата</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="chatField">
+        <table class="table">
+
+
+            @foreach (var message in Model)
+            {
+                <tr>
+                    <td>
+                        <span>
+                            @if (message.Chater.ImageLink.Length > 0)
+                            {
+
+                                <img src="@Url.Content(message.Chater.ImageLink.ToString())" alt="Нету фотографии" style="width:40px" />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/ProfilePhotos/Undefined.jpg")" style="width:60px">
+                            }
+                        </span>
+                        <span id="name">@message.Chater.ChaterkName</span> написал(а):    
+                        <span id="content">@message.Message</span>
+                        <span id="time">@message.Published</span>
+                        <span>
+                            @using (Html.BeginForm("PostAnswer", "Chat", FormMethod.Post))
+                            {
+                                <input id ="an" type="text" placeholder="Ответить" name="Message" />
+                                <input type="hidden" name="MessId" value=@message.Id>
+                                <input type="submit" value="Ответить" class="btn-answer" style="visibility: hidden;"/>
+                            }
+                        </span>
+                        <br />
+
+                        <div class="reply">
+
+                            @foreach (var answer in message.Answers)
+                            {                                <br />
+                                <span class="ans">
+                                    @if (answer.Chater.ImageLink.Length > 0)
+                                    {
+
+                                        <img src="@Url.Content(answer.Chater.ImageLink.ToString())" alt="Нету фотографии" style="width:40px" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content("~/ProfilePhotos/Undefined.jpg")" style="width:60px">
+                                    }
+                                </span>
+                                <span id="anssur">@answer.Chater.ChaterkName ответил(a):</span> 
+                                <span id="anscontent">@answer.Message</span>
+                                <span id="anstime">@answer.PostTime</span>
+                                <br />
+                            }
+                        </div>
+                        <br />
+
+                    </td>
+
+
+
+
+                </tr>
+            }
+
+        </table>
+    </div>
+    
+    <div class="entermessage">
+        @using (Html.BeginForm("MessagePost", "Chat", FormMethod.Post))
+        {
+            if (Session["IMG"].ToString().Length > 0)
+            {
+
+                <img src="@Url.Content(Session["IMG"].ToString())" alt="Нету фотографии" style="width:90px" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/ProfilePhotos/Undefined.jpg")" style="width:60px">
+            }
+
+            <textarea class="MessagePost" name="Message" placeholder="Введите текст"></textarea>
+
+            <input type="submit" value="Отправить" class="pushmess" style="visibility: hidden;"/>
+        }
+        
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Scripts/jquery-3.3.1.js")
+    @Scripts.Render("~/Scripts/chatfield.js")
+</body>
+</html>
